@@ -12,11 +12,11 @@
 
 ```c
 /* 示例契约：out 必须非空，失败时 *out 保持原值；成功时调用者负责 free。 */
-int packet_alloc(size_t size, unsigned char **out) {
+int packet_alloc(size_t size, unsigned char** out) {
   if (out == NULL || size == 0) {
     return -1;
   }
-  unsigned char *buffer = malloc(size);
+  unsigned char* buffer = malloc(size);
   if (buffer == NULL) {
     return -1;
   }
