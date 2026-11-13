@@ -148,8 +148,11 @@ scripts/                   本地与 CI 共用的检查入口
 
 - [建设路径](docs/roadmap.md)：从零开始的优先级、交付物和验收方法。
 - [开发环境与构建](docs/build-and-environment.md)：工具链、CMake、依赖及环境一致性。
+- [C/C++ 编码规范](docs/coding-standards.md)：公共约定、C 与 C++ 专属规则，以及本地/CI 检查入口。
 - [测试与质量保障](docs/testing-and-quality.md)：测试金字塔、Sanitizer、静态分析和性能。
 - [AI 协作与安全](docs/ai-workflow.md)：上下文、任务分解、审查及权限边界。
 - [网络解析器示例](examples/packet-parser/README.md)：可构建、可测试的最小 C++ 项目。
 
 仓库仍在持续建设。示例使用 C++17、CMake 和 CTest，不依赖 DPDK 或真实网卡。
+
+当前示例已接入 clang-format 18 格式检查与 clang-tidy 18 选定规则检查；执行方法见[编码规范](docs/coding-standards.md)。纯 C 编译、Sanitizer 与真实硬件测试尚未接入当前 CI。

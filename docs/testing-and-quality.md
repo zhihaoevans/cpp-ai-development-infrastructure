@@ -21,3 +21,7 @@
 ## CI 验收
 
 新变更先跑格式、编译、单测等快速检查，再按成本安排 sanitizers、集成与系统测试。CI 应在检查失败时失败；外部资源不可用时报告为未验证而非通过。不要使用带有写权限或密钥的上下文运行不可信的 PR 代码。
+
+## 本仓库已启用的检查
+
+当前 CI 包含 Debug 构建、CTest、clang-format 18 与 clang-tidy 18 选定规则检查。本地执行相同的 `scripts/check_quality.py` 入口，安装和命令见[编码规范](coding-standards.md)。所有检查失败时返回非零状态；格式检查不会自动修改文件。Sanitizer、fuzzing、性能测试和纯 C 编译是上述建设建议，尚未接入当前 CI。
