@@ -15,3 +15,17 @@ jobs:
         run: cmake --build build/packet-parser
       - name: Test
         run: ctest --test-dir build/packet-parser --output-on-failure
+  quality:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install LLVM 18 quality tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes clang-format-18 clang-tidy-18
+      - name: Check formatting
+        run: python3 scripts/check_quality.py format
+      - name: Configure compilation database
+        run: cmake -S examples/packet-parser -B build/packet-parser -DCMAKE_BUILD_TYPE=Debug
+      - name: Run static analysis
+        run: python3 scripts/check_quality.py tidy --build-dir build/packet-parser

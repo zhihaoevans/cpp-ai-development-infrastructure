@@ -13,3 +13,14 @@ ctest --test-dir build/packet-parser --output-on-failure
 ```
 
 修改解析器时关注截断、输入边界及字节序；必要时增加回归测试。反馈说明执行过的命令、结果及无法验证的部分。
+
+编码前阅读 [公共规范](docs/coding-standards.md) 及对应语言指南。当前示例为 C++17；C 指南尚无纯 C 编译验证。
+
+质量检查需要 Python >= 3.9、clang-format 18 和 clang-tidy 18（可通过 `CLANG_FORMAT` / `CLANG_TIDY` 指定路径）：
+
+```sh
+python3 scripts/check_quality.py format
+python3 scripts/check_quality.py tidy --build-dir build/packet-parser
+```
+
+静态分析需要先按上述 CMake 命令生成编译数据库。格式修复使用 `python3 scripts/check_quality.py format --fix`，随后重新构建并测试；不要关闭规则来掩盖错误。命名、所有权和错误语义仍需人工审查。
